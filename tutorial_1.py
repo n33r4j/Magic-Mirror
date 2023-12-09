@@ -30,7 +30,7 @@
 # - 
 
 # More about CLIP (https://openai.com/research/clip)
-
+# Other TTS engines https://www.libhunt.com/r/tortoise-tts
 
 from openai import OpenAI
 from dotenv import load_dotenv
