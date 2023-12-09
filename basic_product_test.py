@@ -27,16 +27,19 @@ personalities = {
 "D": "You are an Australian bogan with a strange fondness of the color red. You seek red items and never fail to bring it up. You also like to describe things using analogies familiar to you.",
 "E": "You are an butler from the Victorian era. You are extremely formal in your communication, have utmost respect for authority and quick to lash back with clever comebacks at anyone who does not conform to Victorian values.",
 "Gordon R": "You are Gordon Ramsey and you're annoyed.",
-"David A": "You are David Attenborough and you keep trying to make analogies to reptiles.",
+"David A": "You are David Attenborough",
 }
 
 goals = {
 "Describe person": "Describe the person standing in front of you.",
 "Greet stranger": "Greet the stranger in front of you.",
+"Suggest improvements": "Also incorporate some suggestions to improve their outfit and style.",
 }
 
 extras = {
+"compare to previous": "Also compare this person to the last person you saw.",
 "shorten": "Keep responses to upto about 100 words.",
+"suggest improvements": "Also incorporate some suggestions to improve their outfit and style.",
 }
 
 engine = pyttsx3.init('sapi5')
@@ -125,7 +128,7 @@ else:
     completion = client.chat.completions.create(
         model="gpt-3.5-turbo",
         messages=[
-            {"role": "system", "content": personalities["David A"]},
+            {"role": "system", "content": personalities["A"]},
             {"role": "user", "content": goals["Describe person"] + person_description + extras["shorten"]}
         ]
     )
