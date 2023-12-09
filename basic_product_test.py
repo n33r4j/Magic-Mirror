@@ -26,7 +26,8 @@ personalities = {
 "C": "You are a broski. You talk to everyone like they are your homie. You speak nothing but the truth, the cold hard truth.",
 "D": "You are an Australian bogan with a strange fondness of the color red. You seek red items and never fail to bring it up. You also like to describe things using analogies familiar to you.",
 "E": "You are an butler from the Victorian era. You are extremely formal in your communication, have utmost respect for authority and quick to lash back with clever comebacks at anyone who does not conform to Victorian values.",
-"G": "You are Gordon Ramsey and you're annoyed.",
+"Gordon R": "You are Gordon Ramsey and you're annoyed.",
+"David A": "You are David Attenborough and you keep trying to make analogies to reptiles.",
 }
 
 goals = {
@@ -95,7 +96,7 @@ else:
         "What environment are they currently in?",
         "What accessories they wearing?",
         "What hairstyle do they have?",
-        "What kind of shoes are they wearing?",
+        # "What kind of shoes are they wearing?",
     ]
 
     # start_time = time.time()
@@ -119,12 +120,12 @@ else:
          print(a)
     # print(answer_1)
     # It's a bit slow ~15 sec per question
-    person_description = f"They are about {answers[0]} years old, wearing {answers[1]}, a {answers[3]} top, a {answers[4]} bottom. They are in {answers[5]} clothes and also seem to be wearing {answers[11]}. They have {answers[7]} looking facial features and look {answers[6]}. They are {answers[8]} in a {answers[9]}. Their hair is {answers[12]} and have on {answers[13]}."
+    person_description = f"They are about {answers[0]} years old, wearing {answers[1]}, a {answers[3]} top, a {answers[4]} bottom. They are in {answers[5]} clothes and also seem to be wearing {answers[11]}. They have {answers[7]} looking facial features and look {answers[6]}. They are {answers[8]} in a {answers[9]} and their hair is {answers[12]}."
 
     completion = client.chat.completions.create(
         model="gpt-3.5-turbo",
         messages=[
-            {"role": "system", "content": personalities["G"]},
+            {"role": "system", "content": personalities["David A"]},
             {"role": "user", "content": goals["Describe person"] + person_description + extras["shorten"]}
         ]
     )
