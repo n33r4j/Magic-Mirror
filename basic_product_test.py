@@ -27,6 +27,7 @@ import numpy as np
 import cv2 as cv
 import time
 
+PERSONA_INDEX = 2 # <--- Change this value
 PERSONAS = [
     "A",
     "B",
@@ -39,8 +40,10 @@ PERSONAS = [
     "Uncle Roger"
 ]
 
+#============================================================
+
 tts_engine = mTTS()
-tts_engine.setVoiceProfile(PERSONAS[2])
+tts_engine.setVoiceProfile(PERSONAS[PERSONA_INDEX])
 
 client = OpenAI()
 
@@ -92,13 +95,15 @@ else:
     
     person_description = f"They are about {answers[0]} years old, wearing {answers[1]}, a {answers[3]} top, a {answers[4]} bottom. They are in {answers[5]} clothes and also seem to be wearing {answers[11]}. They have {answers[7]} looking facial features and look {answers[6]}. They are {answers[8]} in a {answers[9]} and their hair is {answers[12]}."
 
-    print(pmp.personalities["Uncle Roger"])
+    print("="*15, "DEBUG INFO", "="*15)
+    print("="*8, "PROMPT", "="*8)
     print(pmp.goals["Describe person"] + person_description + pmp.extras["shorten"])
+    print("="*40)
 
     completion = client.chat.completions.create(
         model="gpt-3.5-turbo",
         messages=[
-            {"role": "system", "content": pmp.personalities["Uncle Roger"]},
+            {"role": "system", "content": pmp.personalities[PERSONAS[PERSONA_INDEX]]},
             {"role": "user", "content": pmp.goals["Describe person"] + person_description + pmp.extras["shorten"]}
         ]
     )
@@ -108,8 +113,8 @@ else:
     response = completion.choices[0].message.content
     print(response)
 
-    engine.say(response)
-    engine.runAndWait()
+    tts_engine.engine.say(response)
+    tts_engine.engine.runAndWait()
 
 cap.release()
 cv.destroyAllWindows()
