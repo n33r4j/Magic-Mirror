@@ -34,11 +34,14 @@
 
 from vosk import Model, KaldiRecognizer
 import pyaudio
+import Prompts as pmp
+import random
 
 # model = Model("models/vosk-model-en-us-0.22-lgraph/vosk-model-en-us-0.22-lgraph")
 model = Model("models/vosk-model-small-en-us-0.15/vosk-model-small-en-us-0.15")
 
 recognizer = KaldiRecognizer(model, 16000, '[ "mirror mirror" ]')
+magic_words = "mirror mirror"
 
 mic = pyaudio.PyAudio()
 stream = mic.open(format=pyaudio.paInt16, channels=1, rate=16000, input=True, frames_per_buffer=8192)
@@ -50,4 +53,8 @@ while True:
     if recognizer.AcceptWaveform(data):
         text = recognizer.Result()
         output = text[14:-3]
-        print(output)
+        if output == magic_words:
+            print(output, "ok")
+        else:
+            print(pmp.wrong_keyword_responses[random.randint(0, len(pmp.wrong_keyword_responses)-1)])
+

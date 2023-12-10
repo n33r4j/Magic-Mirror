@@ -47,3 +47,8 @@ description_templates = {
     "Sentence" : "",
     "Simple": ",,,"
 }
+
+wrong_keyword_responses = [
+    "Ah, ah, ah. You didn't say the magic words",
+    "I'm not talking to you until you show some respect",
+]

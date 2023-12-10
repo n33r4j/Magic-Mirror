@@ -55,7 +55,7 @@ goals = {
 }
 
 extras = {
-"use SAPI5 tags": "As an expert TTS generator, use SAPI5 tags where necessary to make your response sound as real as possible.",
+"use SAPI5 tags": "As an expert TTS generator, use SAPI5 tags where necessary to make your response sound as real as possible.", # This doesn't work
 }
 
 sample_descriptions = {
@@ -70,6 +70,9 @@ voices = engine.getProperty('voices')
 rate = engine.getProperty('rate')
 volume = engine.getProperty('volume')
 
+for v in voices:
+    print(v.name)
+
 engine.setProperty('voice', voices[1].id)
 print(f"rate: {rate}")
 engine.setProperty('rate', rate)
@@ -81,7 +84,7 @@ completion = client.chat.completions.create(
 	model="gpt-3.5-turbo",
 	messages=[
 		{"role": "system", "content": personalities["D"]},
-		{"role": "user", "content": goals["Describe person"] + sample_descriptions["stranger 1"] + extras["Use SAPI5 tags"]}
+		{"role": "user", "content": goals["Describe person"] + sample_descriptions["stranger 1"]}
 	]
 )
 

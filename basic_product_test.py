@@ -19,7 +19,7 @@ import pyttsx3
 import os
 
 import Prompts as pmp
-import MirrorTTS as mTTS
+from MirrorTTS import MirrorTTS as mTTS
 
 load_dotenv()
 
@@ -86,12 +86,12 @@ else:
 
     for q in pmp.questions:
         pq = txt_processors["eval"](q)   
-        answers.append(model.predict_answers(samples={"image": image, "text_input": pq}, inference_method="generate"))
+        answers.append(model.predict_answers(samples={"image": image, "text_input": pq}, inference_method="generate")[0])
     
     # print(f"Execution time: {time.time() - start_time}")
     print("Answers")
     for a in answers:
-         print(a)
+        print(a)
     
     person_description = f"They are about {answers[0]} years old, wearing {answers[1]}, a {answers[3]} top, a {answers[4]} bottom. They are in {answers[5]} clothes and also seem to be wearing {answers[11]}. They have {answers[7]} looking facial features and look {answers[6]}. They are {answers[8]} in a {answers[9]} and their hair is {answers[12]}."
 
