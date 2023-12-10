@@ -19,6 +19,7 @@ import pyttsx3
 import os
 
 import Prompts as pmp
+import MirrorTTS as mTTS
 
 load_dotenv()
 
@@ -26,18 +27,20 @@ import numpy as np
 import cv2 as cv
 import time
 
+PERSONAS = [
+    "A",
+    "B",
+    "Broski",
+    "Bogan",
+    "Butler",
+    "Gordan Rm",
+    "David At",
+    "Paris Hilton",
+    "Uncle Roger"
+]
 
-
-engine = pyttsx3.init('sapi5')
-
-voices = engine.getProperty('voices')
-rate = engine.getProperty('rate')
-volume = engine.getProperty('volume')
-
-engine.setProperty('voice', voices[0].id)
-print(f"rate: {rate}")
-engine.setProperty('rate', rate)
-engine.setProperty('volume', volume)
+tts_engine = mTTS()
+tts_engine.setVoiceProfile(PERSONAS[2])
 
 client = OpenAI()
 
