@@ -21,7 +21,7 @@ goals = {
 
 extras = {
 "compare to previous": "Also compare this person to the last person you saw.",
-"shorten": "Keep responses to upto about 100 words.",
+"shorten": "Keep responses to upto about 150 words.",
 "creative and indirect": "Try to use the information in a creative way and try not to directly include the given information.",
 "suggest improvements": "Also incorporate some suggestions to improve their outfit and style.",
 }

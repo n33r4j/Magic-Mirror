@@ -27,7 +27,7 @@ import numpy as np
 import cv2 as cv
 import time
 
-PERSONA_INDEX = 2 # <--- Change this value
+PERSONA_INDEX = 8 # <--- Change this value
 PERSONAS = [
     "A",
     "B",

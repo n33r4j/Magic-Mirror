@@ -16,7 +16,7 @@ voice_profiles = {
     "Broski": "EngUS-male",
     "Bogan": "EngUS-male",
     "Butler": "EngUK-female",
-    "Gordan Rm": "EngUS-male",
+    "Gordon R": "EngUS-male",
     "David At": "EngUS-male",
     "Paris Hilton": "EngUS-female",
     "Uncle Roger": "EngUS-male",
@@ -33,5 +33,5 @@ class MirrorTTS:
     def setVoiceProfile(self, persona):
         # Not the best way to do this, I know :(
         self.engine.setProperty('voice', self.voices[voice_indexes[voice_profiles[persona]]].id)
-        # self.engine.setProperty('rate', rate)
-        # self.engine.setProperty('volume', volume)
+        self.engine.setProperty('rate', self.rate)
+        self.engine.setProperty('volume', self.volume)
