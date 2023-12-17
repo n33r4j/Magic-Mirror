@@ -63,7 +63,7 @@ stream = mic.open(format=pyaudio.paInt16, channels=1, rate=16000, input=True, fr
 stream.start_stream()
 
 # time.sleep(5)
-start_time = time.time()
+start_time = time.perf_counter()
 
 cap = cv.VideoCapture(1)
 if not cap.isOpened():
@@ -110,7 +110,7 @@ while True:
                 model, vis_processors, txt_processors = load_model_and_preprocess(name="blip_vqa", model_type="vqav2", is_eval=True, device=device)
                 # ask a random question.
 
-                # start_time = time.time()
+                # start_time = time.perf_counter()
                 image = vis_processors["eval"](raw_image).unsqueeze(0).to(device)
                 
                 answers = []
@@ -119,7 +119,7 @@ while True:
                     pq = txt_processors["eval"](q)   
                     answers.append(model.predict_answers(samples={"image": image, "text_input": pq}, inference_method="generate")[0])
                 
-                # print(f"Execution time: {time.time() - start_time}")
+                # print(f"Execution time: {time.perf_counter() - start_time}")
                 print("Answers")
                 for a in answers:
                     print(a)
@@ -139,7 +139,7 @@ while True:
                     ]
                 )
 
-                print(f"Execution time: {time.time() - start_time}")
+                print(f"Execution time: {time.perf_counter() - start_time}")
 
                 response = completion.choices[0].message.content
                 print("="*40)
